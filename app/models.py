@@ -57,7 +57,7 @@ class Category(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(
-        verbose_name="Ссылка на сайт",
+        verbose_name="Название",
         max_length=200,
     )
     site_url = models.URLField(
