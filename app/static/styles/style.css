@@ -112,3 +112,96 @@ nav .nav-links .nav-link a{
     font-weight: 700;
     color: rgb(195, 22, 234);
 }
+
+.categories {
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    overflow-x: auto;
+    background-color: #f9bff9d6;
+    border-bottom: 1px solid #ddd;  
+}
+
+.product-details {
+    display: flex;
+    align-items: flex-start; /* выравнивание по верху */
+    gap: 40px; /* расстояние между изображением и текстом */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+.product-details-image img {
+    width: 300px;
+    height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* === Информация о товаре === */
+.product-details-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Заголовок сверху */
+.product-title {
+    font-size: 25px;
+    color: #000000;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.product-details-info p:nth-child(1) {
+    color: #9b0e0e; 
+    margin-bottom: 0%;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 1;
+}
+
+/* Описание и цена */
+.product-text p {
+    margin: 30px 0;
+    font-size: 17px;
+    line-height: 2;
+}
+
+
+.product-text p:nth-child(1) {
+    color: #000000; /* описание */
+    margin-bottom: 0%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.product-text p:nth-child(2) {
+    color: #00000058; /* цена */
+    margin-bottom: 0%;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.product-text p:nth-child(3) {
+    color: hsl(0, 0%, 0%); /* описание */
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.product-text p:nth-child(4) {
+    color: #da0fb1; /* описание */
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1;
+}
+
+
