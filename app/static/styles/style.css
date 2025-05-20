@@ -157,10 +157,10 @@ nav .nav-links .nav-link a{
 }
 
 .product-details-info p:nth-child(1) {
-    color: #9b0e0e; 
+    color: #000000; 
     margin-bottom: 0%;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 15px;
     line-height: 1;
 }
 
@@ -205,3 +205,22 @@ nav .nav-links .nav-link a{
 }
 
 
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #e212e5;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination .current {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 4px;
+}

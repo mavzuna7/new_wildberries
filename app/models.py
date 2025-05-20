@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Product(models.Model):
     name = models.CharField(
@@ -28,12 +29,18 @@ class Product(models.Model):
         verbose_name="Бренд",
         on_delete=models.CASCADE,
     )
+    slug = models.SlugField(
+        verbose_name="URL (автоматически)",
+        unique=True,
+        null=True,
+    )
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
     
-    def __str__(self):
+    def str(self):
         return self.name
+    
 
 class Category(models.Model):
     name = models.CharField(
@@ -47,11 +54,19 @@ class Category(models.Model):
         null=True,
         blank=True,
     )
+
+    slug = models.SlugField(
+        verbose_name="URL (автоматически)",
+        unique=True,
+        null=True,
+        editable=True,
+    )
+
     class Meta:
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
     
-    def __str__(self):
+    def str(self):
         return self.name
 
 
@@ -72,17 +87,5 @@ class Brand(models.Model):
         verbose_name = "Бренд"
         verbose_name_plural = "Бренды"
 
-    def __str__(self):
+    def str(self):
         return self.name
-
-
-
-
-    # price 
-    
-    # name 
-    
-    # desc
-    # image
-# brand
-# category

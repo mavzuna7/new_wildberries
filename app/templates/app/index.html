@@ -3,11 +3,9 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-
-
 <div class="container">
     <div class="products">
-    {% for product in products %}
+        {% for product in page_obj %}
         <div class="product-card">
             <div class="product-img">
                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -21,14 +19,24 @@
             <p class="product-category">{{ product.category.name }}</p>
             <button class="product-button" onclick="window.location.href='{% url 'product_details' product.id %}'">Купить</button>
         </div>
+        {% endfor %}
+    </div>
     
-    {% endfor %}
+    <!-- Добавляем навигацию по страницам -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            {% endif %}
+        </span>
     </div>
 </div>
 {% endblock %}
-
-
-
-
-
-
