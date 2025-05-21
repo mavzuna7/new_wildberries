@@ -206,21 +206,29 @@ nav .nav-links .nav-link a{
 
 
 .pagination {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 30px;
 }
 
-.pagination a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #e212e5;
-    border-radius: 4px;
+.step-links a,
+.current-page {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border-radius: 5px;
     text-decoration: none;
-    color: #333;
+    color: #e212e5;
+    font-weight: 500;
 }
 
-.pagination .current {
+.step-links a:hover {
     background-color: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 4px;
 }
+
+.current-page {
+    background-color: #e212e5;
+    color: white;
+    font-weight: bold;
+}
+
+

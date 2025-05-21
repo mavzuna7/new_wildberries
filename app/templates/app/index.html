@@ -5,38 +5,55 @@
 {% block content %}
 <div class="container">
     <div class="products">
-        {% for product in page_obj %}
-        <div class="product-card">
-            <div class="product-img">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            </div>
-            <p class="product-price">{{ product.price }} ₽</p>
-            <div class="product-info">
-                <p class="product-brand">{{ product.brand.name }}</p>
-                /
-                <p class="product-name">{{ product.name }}</p>
-            </div>
-            <p class="product-category">{{ product.category.name }}</p>
-            <button class="product-button" onclick="window.location.href='{% url 'product_details' product.id %}'">Купить</button>
+    {% for product in page_obj %}
+    <div class="product-card" onclick="goToProduct('{{ product.slug }}')" style="cursor: pointer;">
+        <div class="product-img">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
         </div>
+        <p class="product-price">{{ product.price }} ₽</p>
+        <div class="product-info">
+            <p class="product-brand">{{ product.brand.name }}</p> /
+            <p class="product-name">{{ product.name }}</p>
+        </div>
+        <p class="product-category">{{ product.category.name }}</p>
+
+        <form method="post" action="{% url 'add_to_cart' product.slug %}" class="add-to-cart-form" onclick="event.stopPropagation();">
+            {% csrf_token %}
+            <button type="submit" class="product-button">В корзину</button>
+        </form>
+    </div>
         {% endfor %}
     </div>
-    
-    <!-- Добавляем навигацию по страницам -->
+
+    <!-- Пагинация: только цифры -->
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                <a href="?page=1">&laquo; 1</a>
+                {% if page_obj.previous_page_number > 1 %}
+                    <span>...</span>
+                {% endif %}
             {% endif %}
 
-            <span class="current">
-                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
-            </span>
+            {# Отображаем текущую и соседние страницы #}
+            {% for num in page_obj.paginator.page_range %}
+                {% if num == page_obj.number %}
+                    <span class="current-page">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                {% if page_obj.number|add:'1' < page_obj.paginator.num_pages %}
+                    <span>...</span>
+                {% endif %}
+                <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
             {% endif %}
         </span>
     </div>
+
 </div>
 {% endblock %}
